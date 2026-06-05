@@ -1,0 +1,26 @@
+{
+  "name": "@kyc/agent",
+  "version": "1.0.0-mvp",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@kyc/shared": "workspace:*",
+    "@langchain/anthropic": "^0.2.18",
+    "@langchain/core": "^0.2.36",
+    "@langchain/openai": "^0.2.11",
+    "@mendable/firecrawl-js": "^1.15.0",
+    "langchain": "^0.2.20",
+    "openai": "^4.77.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "dotenv": "^17.4.2"
+  }
+}

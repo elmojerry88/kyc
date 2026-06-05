@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "kyc-mobile",
+    "slug": "kyc-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "kycapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Esta aplicação precisa de aceder às suas fotos para recolher os documentos de identificação.",
+          "cameraPermission": "Esta aplicação precisa de aceder à câmara para validar o seu rosto e documentos."
+        }
+      ]
+    ]
+  }
+}
