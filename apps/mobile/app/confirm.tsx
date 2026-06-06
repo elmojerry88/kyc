@@ -19,7 +19,6 @@ export default function ConfirmScreen() {
     const formData = new FormData();
     formData.append('nome', kycData.nome);
     formData.append('data_nascimento', kycData.data_nascimento);
-    formData.append('numero_bi', kycData.numero_bi);
     formData.append('nif', kycData.nif);
     
     formData.append('bi_frente', biFrente as any);
@@ -60,8 +59,7 @@ export default function ConfirmScreen() {
       <View style={styles.card}>
         <Text style={styles.label}>Nome: <Text style={styles.value}>{kycData.nome}</Text></Text>
         <Text style={styles.label}>Data Nasc: <Text style={styles.value}>{kycData.data_nascimento}</Text></Text>
-        <Text style={styles.label}>BI: <Text style={styles.value}>{kycData.numero_bi}</Text></Text>
-        <Text style={styles.label}>NIF: <Text style={styles.value}>{kycData.nif}</Text></Text>
+        <Text style={styles.label}>NIF / Nº BI: <Text style={styles.value}>{kycData.nif}</Text></Text>
       </View>
 
       <Text style={styles.subtitle}>Frente do BI</Text>

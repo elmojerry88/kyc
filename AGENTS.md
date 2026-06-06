@@ -111,7 +111,6 @@ O agente recebe uma submissão de KYC e executa os seguintes passos em sequênci
     │  ├── selfie (imagem)
     │  ├── nome (string)
     │  ├── data_nascimento (string)
-    │  ├── numero_bi (string)
     │  └── nif (string)
     ▼
 [NestJS — KycService]
@@ -125,8 +124,8 @@ O agente recebe uma submissão de KYC e executa os seguintes passos em sequênci
             │              data de validade, naturalidade, filiação
             │
             ├── STEP 2: Validação dos dados inseridos vs OCR
-            │      Compara os dados submetidos pelo utilizador
-            │      com os extraídos do BI.
+            │      Compara os dados submetidos (nome, data de nascimento, NIF)
+            │      com os extraídos do BI (nome, data de nascimento, numero_bi).
             │      ❌ Divergência → retorna erro KYC_DATA_MISMATCH
             │
             ├── STEP 3: Detecção de autenticidade do BI
@@ -412,8 +411,7 @@ Content-Type: multipart/form-data
 | `selfie` | File (image/*) | ✅ | Selfie tirada no momento |
 | `nome` | string | ✅ | Nome completo do utilizador |
 | `data_nascimento` | string | ✅ | Data de nascimento (DD/MM/AAAA) |
-| `numero_bi` | string | ✅ | Número do BI |
-| `nif` | string | ✅ | Número de Identificação Fiscal |
+| `nif` | string | ✅ | NIF / Número do BI |
 
 **Resposta de sucesso (200):**
 ```json
@@ -454,7 +452,6 @@ CREATE TABLE kyc_submissions (
   id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   nome            VARCHAR(255) NOT NULL,
   data_nascimento DATE NOT NULL,
-  numero_bi       VARCHAR(20) NOT NULL,
   nif             VARCHAR(20) NOT NULL,
 
   -- Referências às imagens no MinIO
@@ -585,7 +582,7 @@ volumes:
         │
         ▼
 2. Formulário de dados pessoais
-   (nome, data de nascimento, número do BI, NIF)
+   (nome, data de nascimento, NIF/BI)
         │
         ▼
 3. Captura do BI — Frente

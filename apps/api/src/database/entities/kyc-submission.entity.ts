@@ -13,9 +13,6 @@ export class KycSubmission {
   data_nascimento: Date;
 
   @Column({ type: 'varchar', length: 20 })
-  numero_bi: string;
-
-  @Column({ type: 'varchar', length: 20 })
   nif: string;
 
   @Column({ type: 'varchar', length: 500 })

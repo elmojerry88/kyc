@@ -5,7 +5,6 @@ import { ZodError } from 'zod';
 export class SubmitKycDto implements KycSubmission {
   nome: string;
   data_nascimento: string;
-  numero_bi: string;
   nif: string;
 }
 

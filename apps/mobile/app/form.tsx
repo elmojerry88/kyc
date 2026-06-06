@@ -8,7 +8,6 @@ export default function FormScreen() {
   const router = useRouter();
   const [nome, setNome] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
-  const [numeroBi, setNumeroBi] = useState('');
   const [nif, setNif] = useState('');
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState(new Date());
@@ -24,7 +23,7 @@ export default function FormScreen() {
     }
   };
   const handleNext = () => {
-    const data = { nome, data_nascimento: dataNascimento, numero_bi: numeroBi, nif };
+    const data = { nome, data_nascimento: dataNascimento, nif };
     const result = KycSubmissionSchema.safeParse(data);
     
     if (!result.success) {
@@ -63,11 +62,8 @@ export default function FormScreen() {
         />
       )}
 
-      <Text style={styles.label}>Número do BI</Text>
-      <TextInput style={styles.input} value={numeroBi} onChangeText={setNumeroBi} placeholder="Ex: 123456789LA012" autoCapitalize="characters" />
-
-      <Text style={styles.label}>NIF</Text>
-      <TextInput style={styles.input} value={nif} onChangeText={setNif} placeholder="Ex: 1234567890" keyboardType="numeric" />
+      <Text style={styles.label}>NIF / Número do BI</Text>
+      <TextInput style={styles.input} value={nif} onChangeText={setNif} placeholder="Ex: 123456789LA012" autoCapitalize="characters" />
 
       <TouchableOpacity style={styles.button} onPress={handleNext}>
         <Text style={styles.buttonText}>Próximo</Text>

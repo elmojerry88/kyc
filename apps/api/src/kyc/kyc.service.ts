@@ -31,7 +31,6 @@ export class KycService {
     const newSubmission = this.kycRepository.create({
       nome: dto.nome,
       data_nascimento: new Date(dto.data_nascimento.split('/').reverse().join('-')),
-      numero_bi: dto.numero_bi,
       nif: dto.nif,
       status: 'PENDING',
       bi_frente_key: '',
@@ -83,7 +82,6 @@ export class KycService {
       submission_data: {
         nome: dto.nome,
         data_nascimento: dto.data_nascimento,
-        numero_bi: dto.numero_bi,
         nif: dto.nif,
       },
       images_base64: {

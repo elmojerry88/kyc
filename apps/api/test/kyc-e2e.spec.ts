@@ -39,8 +39,7 @@ describe('KycController (e2e)', () => {
       .post('/kyc/submit')
       .field('nome', 'João da Silva')
       .field('data_nascimento', '01/01/1990')
-      .field('numero_bi', '123456789LA012')
-      .field('nif', '1234567890')
+      .field('nif', '123456789LA012')
       .attach('bi_frente', getDummyFilePath('bi_frente.jpg'))
       .attach('bi_verso', getDummyFilePath('bi_verso.jpg'))
       .attach('selfie', getDummyFilePath('selfie.jpg'));

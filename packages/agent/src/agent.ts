@@ -8,7 +8,6 @@ export interface KycInput {
   submission_data: {
     nome: string;
     data_nascimento: string;
-    numero_bi: string;
     nif: string;
   };
   images_base64: {
@@ -29,7 +28,7 @@ export async function runKycAgent(input: KycInput): Promise<KycAgentResult> {
     // STEP 2: Validate OCR data vs User Submission
     if (
       normalizeName(ocrData.nome_completo || "") !== normalizeName(input.submission_data.nome) ||
-      ocrData.numero_bi?.toUpperCase() !== input.submission_data.numero_bi.toUpperCase() ||
+      ocrData.numero_bi?.toUpperCase() !== input.submission_data.nif.toUpperCase() ||
       ocrData.data_nascimento !== input.submission_data.data_nascimento
     ) {
       return {

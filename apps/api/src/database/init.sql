@@ -4,7 +4,6 @@ CREATE TABLE kyc_submissions (
   id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   nome            VARCHAR(255) NOT NULL,
   data_nascimento DATE NOT NULL,
-  numero_bi       VARCHAR(20) NOT NULL,
   nif             VARCHAR(20) NOT NULL,
 
   -- Referências às imagens no MinIO
