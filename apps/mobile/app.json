@@ -7,7 +7,7 @@
     "scheme": "kycapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -31,7 +31,8 @@
           "photosPermission": "Esta aplicação precisa de aceder às suas fotos para recolher os documentos de identificação.",
           "cameraPermission": "Esta aplicação precisa de aceder à câmara para validar o seu rosto e documentos."
         }
-      ]
+      ],
+      "@react-native-community/datetimepicker"
     ]
   }
 }

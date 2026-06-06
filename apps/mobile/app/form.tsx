@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { KycSubmissionSchema } from '@kyc/shared';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 export default function FormScreen() {
   const router = useRouter();
@@ -9,7 +10,19 @@ export default function FormScreen() {
   const [dataNascimento, setDataNascimento] = useState('');
   const [numeroBi, setNumeroBi] = useState('');
   const [nif, setNif] = useState('');
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [date, setDate] = useState(new Date());
 
+  const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+    setShowDatePicker(Platform.OS === 'ios');
+    if (selectedDate) {
+      setDate(selectedDate);
+      const day = String(selectedDate.getDate()).padStart(2, '0');
+      const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+      const year = selectedDate.getFullYear();
+      setDataNascimento(`${day}/${month}/${year}`);
+    }
+  };
   const handleNext = () => {
     const data = { nome, data_nascimento: dataNascimento, numero_bi: numeroBi, nif };
     const result = KycSubmissionSchema.safeParse(data);
@@ -34,7 +47,21 @@ export default function FormScreen() {
       <TextInput style={styles.input} value={nome} onChangeText={setNome} placeholder="Ex: João da Silva" />
 
       <Text style={styles.label}>Data de Nascimento (DD/MM/AAAA)</Text>
-      <TextInput style={styles.input} value={dataNascimento} onChangeText={setDataNascimento} placeholder="Ex: 01/01/1990" keyboardType="" />
+      <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+        <View pointerEvents="none">
+          <TextInput style={styles.input} value={dataNascimento} placeholder="Ex: 01/01/1990" editable={false} />
+        </View>
+      </TouchableOpacity>
+
+      {showDatePicker && (
+        <DateTimePicker
+          value={date}
+          mode="date"
+          display="default"
+          onChange={handleDateChange}
+          maximumDate={new Date()}
+        />
+      )}
 
       <Text style={styles.label}>Número do BI</Text>
       <TextInput style={styles.input} value={numeroBi} onChangeText={setNumeroBi} placeholder="Ex: 123456789LA012" autoCapitalize="characters" />
