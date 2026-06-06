@@ -34,7 +34,7 @@ export default function FormScreen() {
       <TextInput style={styles.input} value={nome} onChangeText={setNome} placeholder="Ex: João da Silva" />
 
       <Text style={styles.label}>Data de Nascimento (DD/MM/AAAA)</Text>
-      <TextInput style={styles.input} value={dataNascimento} onChangeText={setDataNascimento} placeholder="Ex: 01/01/1990" keyboardType="numeric" />
+      <TextInput style={styles.input} value={dataNascimento} onChangeText={setDataNascimento} placeholder="Ex: 01/01/1990" keyboardType="" />
 
       <Text style={styles.label}>Número do BI</Text>
       <TextInput style={styles.input} value={numeroBi} onChangeText={setNumeroBi} placeholder="Ex: 123456789LA012" autoCapitalize="characters" />
