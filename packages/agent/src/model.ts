@@ -21,5 +21,5 @@ export function getLLM() {
     });
   }
 
-  throw new Error(`Unsupported LLM_PROVIDER: ${provider}`);
+  throw new Error(`LLM_PROVIDER NÃO SUPORTADO: ${provider}`);
 }

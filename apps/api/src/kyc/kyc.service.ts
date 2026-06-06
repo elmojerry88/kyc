@@ -94,13 +94,13 @@ export class KycService {
     };
 
     // Call LangChain Agent
-    this.logger.log(`[Submission ${submissionId}] Initiating LangChain Agent...`);
+    this.logger.log(`[Submissão ${submissionId}] Iniciando Agent...`);
     const agentStartTime = performance.now();
     
     const agentResult = await runKycAgent(agentInput);
     
     const agentDuration = performance.now() - agentStartTime;
-    this.logger.log(`[Submission ${submissionId}] Agent completed in ${Math.round(agentDuration)}ms with status: ${agentResult.status}`);
+    this.logger.log(`[Submissão ${submissionId}] Agent concluido em ${Math.round(agentDuration)}ms com status: ${agentResult.status}`);
 
     // Update DB with result
     savedSubmission.status = agentResult.status;
@@ -109,7 +109,7 @@ export class KycService {
 
     if (agentResult.status !== 'KYC_APPROVED') {
       const totalDuration = performance.now() - startTime;
-      this.logger.log(`[Submission ${submissionId}] KYC submission rejected in ${Math.round(totalDuration)}ms.`);
+      this.logger.log(`[Submissão ${submissionId}] Submissão KYC reprovada em ${Math.round(totalDuration)}ms.`);
 
       throw new UnprocessableEntityException({
         status: agentResult.status,
@@ -119,7 +119,7 @@ export class KycService {
     }
 
     const totalDuration = performance.now() - startTime;
-    this.logger.log(`[Submission ${submissionId}] KYC submission approved in ${Math.round(totalDuration)}ms.`);
+    this.logger.log(`[Submissão ${submissionId}] Submissão KYC aprovada em ${Math.round(totalDuration)}ms.`);
 
     return {
       submission_id: submissionId,
@@ -132,7 +132,7 @@ export class KycService {
   async getSubmission(id: string) {
     const submission = await this.kycRepository.findOne({ where: { id } });
     if (!submission) {
-      throw new NotFoundException(`Submission with ID ${id} not found.`);
+      throw new NotFoundException(`Submissão com ID ${id} não encontrada.`);
     }
     return submission;
   }

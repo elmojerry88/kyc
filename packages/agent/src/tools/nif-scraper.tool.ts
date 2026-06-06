@@ -27,7 +27,7 @@ export async function scrapePortalContribuinte(nif: string, expectedName: string
   const portalUrl = process.env.PORTAL_CONTRIBUINTE_URL || "https://portaldocontribuinte.minfin.gov.ao/consulta";
 
   if (!apiKey) {
-    throw new Error("FIRECRAWL_API_KEY is not defined");
+    throw new Error("FIRECRAWL_API_KEY não definida");
   }
 
   const app = new FirecrawlApp({ apiKey });
@@ -54,11 +54,11 @@ export async function scrapePortalContribuinte(nif: string, expectedName: string
             encontrado: z.boolean().describe("True se os dados do NIF foram encontrados, false caso contrário")
           })
         },
-        timeout: 15000 // 15 seconds strict timeout
+        timeout: 15000 // 15 segundos strict timeout
       });
 
       if (!response.success || !response.extract) {
-        throw new Error(`Scrape failed: ${response.error}`);
+        throw new Error(`Scrape falhou: ${response.error}`);
       }
 
       const extracted = response.extract as any;
@@ -91,12 +91,12 @@ export async function scrapePortalContribuinte(nif: string, expectedName: string
 
     } catch (error) {
       lastError = error;
-      console.error(`Attempt ${attempt} failed for NIF scrape:`, error);
+      console.error(`Tentativa ${attempt} falhou para NIF scrape:`, error);
       if (attempt >= maxAttempts) {
         break;
       }
     }
   }
 
-  throw new Error(`Failed to scrape portal after ${maxAttempts} attempts. Last error: ${lastError}`);
+  throw new Error(`Falhou ao fazer scrape do portal após ${maxAttempts} tentativas. Último erro: ${lastError}`);
 }
