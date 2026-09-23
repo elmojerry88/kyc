@@ -7,15 +7,15 @@ export default function Layout() {
       <Stack
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#f4511e',
+            backgroundColor: '#ffffffff',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#000000ff',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
         }}
       >
-        <Stack.Screen name="index" options={{ title: 'Início' }} />
+        <Stack.Screen name="index" options={{ title: 'Página inicial' }} />
         <Stack.Screen name="form" options={{ title: 'Dados Pessoais' }} />
         <Stack.Screen name="bi-frente" options={{ title: 'Frente do BI' }} />
         <Stack.Screen name="bi-verso" options={{ title: 'Verso do BI' }} />
